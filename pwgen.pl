@@ -1,13 +1,17 @@
 #! /usr/bin/perl
 ###############################################################################
 #
-#    Email Manager
-#    
-#    This program manages a email system database.  It is designed to manage 
-#    an email server set up using the following tutorial:
+#    Password Generator
 #
-#    https://www.linode.com/docs/email/postfix/email-with-postfix-dovecot-and-
-#    mariadb-on-centos-7
+#    This program generates a (psuedo) random password.  It takes flags to
+#    set its values.  
+#
+#    You can set the length of the password, and what characters to include
+#    Uppercase Letters, Lowercase Letters, Numbers, Special Characters,
+#    Brackets, and the space character
+#
+#    Defaults are 20 characters long using all characters but the space
+#    character.    
 #
 #    Copyright (C) Jordan McGilvray
 #
@@ -81,7 +85,7 @@ sub flagsIn
                 print "\t--length[number] - The number of characters in the password.\n";
                 print "\t--capital - Use Upper Case Letters in Password Generation.\n";
                 print "\t--lower - Use Lower Case Letters in Password Generation.\n";
-		print "\5--numbers - Use Numbers\n";
+		print "\t--numbers - Use Numbers\n";
                 print "\t--characters - Use Special characters (!@#\$\%^&*-_=+\\|;:'\",./?) in Password Generation.\n";
                 print "\t--brackets - Use Brackets in Password ()[]{}<>.\n";
                 print "\t--space - Use the Space Character.o\n";
