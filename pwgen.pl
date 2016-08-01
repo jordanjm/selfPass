@@ -131,7 +131,7 @@ sub passgen
 		$inputVars[5] = 1;
 	}
 	#For each character in the array do the following:
-	while (scalar @password  + 1 <= $inputVars[0])
+	while (scalar @password < $inputVars[0])
 	{
 		#Select which character type to use for the character.  Uppercase, Lowercase, Numbers, Special Characters, Brackets, and Space (Randomize a number between 1 and 6.
 		my $charTypeSelect = int(rand(6)) + 1;
@@ -143,7 +143,7 @@ sub passgen
 				#If Uppercase letters are deselected, end the iteration.
 				if ($inputVars[1] == 0) 
 				{
-					break;
+					next;
 				} 
 				#Create an array containing the capital letters
 				my @upperLetters=('A'..'Z'); 
@@ -155,7 +155,7 @@ sub passgen
 				#If Lowercase letters are deselected, end the iteration
 				if ($inputVars[2] == 0)
 				{
-					break;
+					next;
 				} 
 				#Create an array with the lowercase letters
 				my @lowerLetters=('a'..'z'); 
@@ -167,7 +167,7 @@ sub passgen
 				#If numbers are deselected, end the iteration
 				if ($inputVars[3] == 0)
 				{
-					break;
+					next;
 				} 
 				#Create an array with the numbers 0-9 in it
 				my @numbers=('0'..'9');
@@ -179,10 +179,10 @@ sub passgen
 				#If Special characters are deselected end the iteration 
 				if ($inputVars[4] == 0)
 				{
-					break;
+					next;
 				} 
 				#Create an array with the special characters
-				my @specialChars=('!','@','#','$','%','^','&','*','-','_','=','+','\\','|',';',':','"','\'',',','.','/','?','`','~'); 
+				my @specialChars=('!','@','#','$','%','^','&','*','-','_','=','+','|',';',':','\'',',','.','/','?','~','\'','"');
 				$passChar = charSelect(@specialChars);
 				break; 
 			}
@@ -191,7 +191,7 @@ sub passgen
 				#If Bracket characters are deselected end the iteration
 				if ($inputVars[5] == 0)
 				{
-					break;
+					next;
 				} 
 				#Create an array with the "Bracket Characters" In it
 				my @brackets=('[',']','{','}','(',')','<','>');
@@ -203,12 +203,17 @@ sub passgen
 				#If Space is deselected, end the iteration
 				if ($inputVars[6] == 0)
 				{
-					break;
+					next;
 				} 
 				#Set the character to the space character
-				$passChar = " "; 
+				my @space=(' ');
+				$passChar = charSelect(@space); 
 				break; 
 			}
+		}
+		if ($passChar eq '')
+		{		
+			print "$charTypeSelect XXXXXXXXXX\n";
 		}
 		push (@password, "$passChar");
 	}
